@@ -207,14 +207,7 @@ public class DateInRegionFormatter {
 		let diff_in_hours: Int = Int((diff_in_seconds / 60 / 60))
 		let diff_days: Int! = abs(cmp.day ?? 0)
 		
-		if diff_in_hours < 24 && diff_days == 0 {
-			// Difference between dates is less than 24 hours
-			// We want to print hour differences in this case
-			let colloquial_time = try self.colloquial_time(forUnit: .hour, withValue: cmp.hour!, date: fDate)
-			let colloquial_date = try self.localized(unit: .hour, withValue: diff_in_hours, asFuture: isFuture, args: abs(diff_in_hours))
-			return (colloquial_date,colloquial_time)
-			
-		} else if (diff_days > 0 || !hasLowerAllowedComponents(than: .day)) {
+		if (diff_days > 0 || !hasLowerAllowedComponents(than: .day)) {
 			// Difference is more than 1 days
 			if diff_in_hours > 48 {
 				if diff_days >= DAYS_IN_WEEK {

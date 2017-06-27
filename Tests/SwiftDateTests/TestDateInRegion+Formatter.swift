@@ -87,6 +87,10 @@ class TestDateInRegion_Formatter: XCTestCase {
         let oneHourAgo_ID = DateInRegion(absoluteDate: Date(), in: id) - 1.hour
         let (custom_6,_) = try! oneHourAgo_ID.colloquialSinceNow()
         XCTAssertEqual(custom_6, "1 jam yang lalu", "Failed get colloquial representation of an old date")
+
+        let tenMinsAgo = DateInRegion() - 10.minutes
+        let (custom_7,_) = try! tenMinsAgo.colloquialSinceNow()
+        XCTAssertEqual(custom_7, "10 minutes ago", "Failed get colloquial representation of an old date")
 		
         let another_Date = DateInRegion(absoluteDate: Date()) - 2.hours - 5.minutes - 3.seconds
         var componentFormatterOptions = ComponentsFormatterOptions()
